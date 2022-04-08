@@ -21,8 +21,8 @@ CREATE TABLE roles (
 CREATE TABLE employees (
   id INT NOT NULL AUTO_INCREMENT,
   employee_id INT,
-  employee first_name VARCHAR(30),
-  employee last_name VARCHAR(30),
+  employee.first_name VARCHAR(30),
+  employee.last_name VARCHAR(30),
   role_id INT NOT NULL,
   manager_id INT,
   FOREIGN KEY (role_id)
