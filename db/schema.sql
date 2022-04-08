@@ -9,18 +9,17 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE roles (
-  id INT NOT NULL AUTO_INCREMENT,
-  departments_id INT,
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   role_title VARCHAR(100) NOT NULL,
-  role_salary INT NOT NULL,
+  role_salary DECIMAL NOT NULL,
+  departments_id INT,
   FOREIGN KEY (department_id)
   REFERENCES department(id)
   ON DELETE SET NULL 
 );
 
 CREATE TABLE employees (
-  id INT NOT NULL AUTO_INCREMENT,
-  employee_id INT,
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   employee.first_name VARCHAR(30),
   employee.last_name VARCHAR(30),
   role_id INT NOT NULL,
