@@ -311,7 +311,7 @@ let employees = [
   }
 ];
 
-// I need a Main Menu
+// Main Menu
 async function initDirectory() {
   const questions = await inquirer.prompt([
     {
@@ -382,36 +382,32 @@ async function initDirectory() {
             choices: employees
           }
         ]);
+      }  else if (answers.mainMenu === "Add Employee") {
+        employeeQuestions();
       } else if (answers.mainMenu === "Remove Employee") {
+        const employeeChoices = employees.map((employee) => ({
+          name: `${employee.value}`,
+          value: employee.key
+        }));
         inquirer.prompt([
           {
             type: 'list',
-            message: 'Check out these employees, man!',
+            message: 'Hey, what you doing?!',
             name: 'listOfEmployees',
-            choices: employees
+            choices: employeeChoices
           }
         ]).then(answers => {
-          for (let i = 0; i < employees.length; i++) {
-            const currentEmployee = employees[i];
-            const employeeName = currentEmployee.value;
-            if (employeeName === answers.value) {
-              console.log("You're outta on your ass, man!");
-            } 
-        }
-      }) 
-      // } else if (answers.value === "Add Employee") {
-      //   employeeQuestions();
-      // } else if (answers.value === "Add Role") {
-      //   roleQuestions();
-      // } else if (answers.value === "Add Department") {
-      //   departmentQuestions();
+            console.log(answers);
+            "DELETE FROM employees WHERE id = ?";
+            console.log(employees);
+        }) 
       } else {
-        console.log(answers.value);
+        console.log("END");
       }
   })
 }
 
-// I need there to be department related tasks
+// Department Related Tasks
 async function departmentQuestions() {
   const questions = await inquirer.prompt([
     {
@@ -513,7 +509,6 @@ async function roleQuestions() {
 const generateDirectory = async() => {
   console.log("Hold on your seats!");
   initDirectory();
-
 }
 
 generateDirectory();
