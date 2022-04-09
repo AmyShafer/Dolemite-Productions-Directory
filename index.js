@@ -391,7 +391,7 @@ async function initDirectory() {
             choices: employees
           }
         ]).then(answers => {
-          console.log(employees.findIndex(answers.value));
+          console.log(employees.findIndex(employeeName => employeeName === answers.value));
             //employees.splice();
           }
         );
