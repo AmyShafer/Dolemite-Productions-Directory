@@ -334,60 +334,78 @@ async function initDirectory() {
         },
         {
           key: 'd',
-          value: 'Add Employee',
-        },
-        {
-          key: 'e',
-          value: 'Remove Employee',
-        },
-        {
-          key: 'f',
-          value: 'Update Employee Role',
-        },
-        {
-          key: 'g',
           name: 'Update Employee Manager',
         },
         // role questions
         {
-          key: 'h',
+          key: 'e',
           value: 'View All Roles',
         },
         {
-          key: 'i',
+          key: 'f',
           value: 'Add Role',
         },
         {
-          key: 'j',
+          key: 'g',
           value: 'Remove Role',
         },
         // department questions
         {
-          key: 'k',
+          key: 'h',
           value: 'View All Departments',
         },
         {
-          key: 'l',
+          key: 'i',
           value: 'Add Department',
         },
         {
-          key: 'm',
+          key: 'j',
           value: 'Remove Departments',
         },
         {
-          key: 'n',
+          key: 'k',
           value: 'View Total Budget By Department',
         },
         {
-          key: 'o',
+          key: 'l',
           value: 'Quit',
         },
       ],
     },
   ]).then(answers => {
-    console.log(answers);
+      if (answers.mainMenu === "View All Employees") {
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'Check out these employees, man!',
+            name: 'listOfEmployees',
+            choices: employees
+          }
+        ]);
+      } else if (answers.mainMenu === "Remove Employee") {
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'Check out these employees, man!',
+            name: 'listOfEmployees',
+            choices: employees
+          }
+        ]).then(answers => {
+          console.log(employees.findIndex(answers.value));
+            //employees.splice();
+          }
+        );
+      } else if (answers.value === "Add Employee") {
+        employeeQuestions();
+      } else if (answers.value === "Add Role") {
+        roleQuestions();
+      } else if (answers.value === "Add Department") {
+        departmentQuestions();
+      } else {
+        console.log(answers.value);
+      }
   })
-}
+};
 
 // I need there to be department related tasks
 async function departmentQuestions() {
@@ -395,7 +413,7 @@ async function departmentQuestions() {
     {
       type: 'list',
       message: 'What do you wanna, Baby?',
-      name: 'departmentOptions',
+      name: 'departmentDetails',
       choices: [
         {
           key: 'a',
@@ -438,7 +456,7 @@ async function employeeQuestions() {
     {
       type: 'input',
       message: 'Please give details about the new employee:',
-      name: 'employeeOptions',
+      name: 'employeeDetails',
     },
     {
       type: 'input',
