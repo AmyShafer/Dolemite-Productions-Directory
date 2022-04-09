@@ -391,21 +391,25 @@ async function initDirectory() {
             choices: employees
           }
         ]).then(answers => {
-          console.log(employees.findIndex(employeeName => employeeName === answers.value));
-            //employees.splice();
-          }
-        );
-      } else if (answers.value === "Add Employee") {
-        employeeQuestions();
-      } else if (answers.value === "Add Role") {
-        roleQuestions();
-      } else if (answers.value === "Add Department") {
-        departmentQuestions();
+          for (let i = 0; i < employees.length; i++) {
+            const currentEmployee = employees[i];
+            const employeeName = currentEmployee.value;
+            if (employeeName === answers.value) {
+              console.log("You're outta on your ass, man!");
+            } 
+        }
+      }) 
+      // } else if (answers.value === "Add Employee") {
+      //   employeeQuestions();
+      // } else if (answers.value === "Add Role") {
+      //   roleQuestions();
+      // } else if (answers.value === "Add Department") {
+      //   departmentQuestions();
       } else {
         console.log(answers.value);
       }
   })
-};
+}
 
 // I need there to be department related tasks
 async function departmentQuestions() {
