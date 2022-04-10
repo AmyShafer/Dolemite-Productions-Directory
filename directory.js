@@ -1,7 +1,7 @@
 // This Directory contains departments, roles, employees, and managers
-
-// departments
-let departments = [
+const directory = {
+  // departments
+  departments: [
     {
       key: '1',
       value: 'Crew'
@@ -18,10 +18,10 @@ let departments = [
       key: '4',
       value: 'Investors'
     },
-  ];
+  ],
   
   // roles
-  let roles = [
+  roles: [
     {
       key: '1',
       value: 'Actor'
@@ -122,10 +122,10 @@ let departments = [
       key: '25',
       value: 'Writer',
     },
-  ];
+  ],
   
   // employees
-  let employees = [
+  employees: [
     {
       key: '1',
       value: 'Malaika Ahraam'
@@ -306,45 +306,43 @@ let departments = [
       key: '45',
       value: 'Carol Yasunaga'
     }
-  ];
+  ],
   
   // managers 
-  let managers = [
-    {
-      key: 'a',
-      value: 'Julius Bihari'
-    }, 
-    {
-      key: 'b',
-      value: 'Bobbie George'
-    },
-    {
-      key: 'c',
-      value: 'Claudia Jackson'
-    },
-    {
-      key: 'd',
-      value: 'Rex Lipton'
-    },
-    {
-      key: 'e',
-      value: 'D’Urville Martin'
-    },
-    {
-      key: 'f',
-      value: 'Rudy Ray Moore'
-    },
-    {
-      key: 'g',
-      value: 'Curtis Pulliam'
-    },
-    {
-      key: 'i',
-      value: 'Nicholas Josef von Sternberg'
-    }
-  ];
+  managers: [
+  {
+    key: 'a',
+    value: 'Julius Bihari'
+  }, 
+  {
+    key: 'b',
+    value: 'Bobbie George'
+  },
+  {
+    key: 'c',
+    value: 'Claudia Jackson'
+  },
+  {
+    key: 'd',
+    value: 'Rex Lipton'
+  },
+  {
+    key: 'e',
+    value: 'D’Urville Martin'
+  },
+  {
+    key: 'f',
+    value: 'Rudy Ray Moore'
+  },
+  {
+    key: 'g',
+    value: 'Curtis Pulliam'
+  },
+  {
+    key: 'i',
+    value: 'Nicholas Josef von Sternberg'
+  }
+  ]
+}
 
-  module.departments = departments;
-  module.roles = roles;
-  module.employees = employees;
-  module.managers = managers;
+module.exports = directory;

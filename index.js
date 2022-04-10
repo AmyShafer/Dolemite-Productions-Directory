@@ -2,10 +2,11 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const connection = require('./config/connection.js');
-const departments = require('./directory.js');
-const roles = require('./directory.js');
-const employees = require('./directory');
-const managers = require('./directory');
+const directory = require('./directory.js');
+const departments = directory.departments;
+const roles = directory.roles;
+const employees = directory.employees;
+const managers = directory.managers;
 
 // Main Menu
 async function initDirectory() {
@@ -143,52 +144,11 @@ async function initDirectory() {
           }
         ]);
       // Quit App
-      } else {
+      } else if (answers.mainMenu === "Quit") {
         console.log("QUIT");
+      } else {
+        initDirectory();
       }
-  })
-}
-
-// Department Related Tasks
-async function departmentQuestions() {
-  const questions = await inquirer.prompt([
-    {
-      type: 'list',
-      message: 'What do you wanna, Baby?',
-      name: 'departmentDetails',
-      choices: [
-        {
-          key: 'a',
-          value: 'Add A Department',
-        },
-        {
-          key: 'b',
-          value: 'Remove A Department',
-        },
-        {
-          key: 'c',
-          value: 'View Budget Of A Department',
-        },
-      ],
-    },
-     // Add a Department
-    {
-        type: 'input',
-        message: 'What\'s the name of the department you wanna add?',
-        name: 'newDepartment',
-    },
-    // Remove a Department
-    {
-        name: 'What\'s  the name of the department you wanna remove?',
-        choices: departments,
-      },
-      // Department Budget
-      {
-        name: 'What department budget do you wanna see?',
-        choices: departments,
-      },
-   ]).then(answers => {
-    console.log(answers);
   })
 }
 
@@ -217,30 +177,6 @@ async function employeeQuestions() {
       type: 'list',
       name: 'Who is the employee\'s manager?',
       choices: employees,
-    }
-  ]).then(answers => {
-    console.log(answers);
-  })
-}
-
-// Role Questions
-async function roleQuestions() {
-  const questions = await inquirer.prompt([
-    {
-      type: 'list',
-      message: 'View All Roles:',
-      name: 'listOfRoles',
-      choices: roles,
-    },
-    {
-      type: 'input',
-      message: 'What role would you like to add?',
-      name: 'newRole',
-    },
-    {
-      type: 'list',
-      message: 'What role would you like to remove?',
-      choices: roles,
     }
   ]).then(answers => {
     console.log(answers);
