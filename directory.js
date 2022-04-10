@@ -103,7 +103,7 @@ const directory = {
       name: 'Production Manager'
     },
     {
-      value: '21',
+      key: '21',
       name: 'Set Decorator'
     },
     {

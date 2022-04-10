@@ -4,9 +4,9 @@ const inquirer = require('inquirer');
 const connection = require('./config/connection.js');
 const directory = require('./directory.js');
 const departments = directory.departments;
-const roles = directory.roles;
-const employees = directory.employees;
-const managers = directory.managers;
+let roles = directory.roles;
+let employees = directory.employees;
+let managers = directory.managers;
 
 // Main Menu
 async function initDirectory() {
@@ -31,7 +31,7 @@ async function initDirectory() {
         },
         {
           key: 'd',
-          name: 'Update Employee Manager',
+          value: 'Update Employee Manager',
         },
         // role menu options
         {
@@ -57,7 +57,7 @@ async function initDirectory() {
         },
         {
           key: 'j',
-          value: 'Remove Departments',
+          value: 'Remove Department',
         },
         {
           key: 'k',
@@ -76,7 +76,7 @@ async function initDirectory() {
         inquirer.prompt([
           {
             type: 'list',
-            message: 'Check out these employees, man!',
+            message: 'Check out these employees, Man!',
             name: 'listOfEmployees',
             choices: employees
           }
@@ -121,7 +121,8 @@ async function initDirectory() {
             choices: employeeChoices
           }
         ]).then(answers => {
-            console.log(answers);
+            employees.splice((answers.listOfEmployees - 1), 1);
+            console.log(employees);
             //"DELETE FROM employees WHERE id = ?";
         }) 
       // View All Roles  
@@ -140,11 +141,78 @@ async function initDirectory() {
           {
             type: 'input',
             message: 'Adda Role, Sista!',
-            name: 'newRoles'
+            name: 'newRole'
           }
-        ]);
-      // Quit App
-      } else if (answers.mainMenu === "Quit") {
+        ]).then(answers => {
+          const addedRole = {
+            key: roles.length + 1,
+            value: answers.newRole
+          }
+          roles.push(addedRole);
+          console.log(roles);
+        })
+      // Remove a Role
+      } else if (answers.mainMenu === "Remove Role") {
+        const roleChoices = roles.map((role) => ({
+          name: `${role.value}`,
+          value: role.key
+        }));
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'You sure you wanna be doing that?!',
+            name: 'listOfRoles',
+            choices: roleChoices
+          }
+        ]).then(answers => {
+          roles.splice((answers.listOfRoles - 1), 1);
+          console.log(roles);
+        })
+      // View All Departments
+      } else if (answers.mainMenu === "View All Departments") {
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'Departments? We gotta few!',
+            name: 'listOfDepartments',
+            choices: departments
+          }
+        ])
+      // Add Department
+      } else if (answers.mainMenu === "Add Department") {
+        inquirer.prompt([
+          {
+            type: 'input',
+            message: 'Another Department? Not sure we got the bank for that, Baby! You know what I\'m sayin?!',
+            name: 'newDepartment'
+          }
+        ]).then(answers => {
+          const addedDepartment = {
+            key: departments.length + 1,
+            value: answers.newDepartment
+          }
+          departments.push(addedDepartment);
+          console.log(departments);
+        })
+      // Remove Department
+      } else if (answers.mainMenu === "Remove Department") {
+        const departmentChoices = departments.map((department) => ({
+          name: `${department.value}`,
+          value: department.key 
+        }));
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'No, no, no! What you doin\', Man?!',
+            name: 'listOfDepartments',
+            choices: departmentChoices
+          }
+        ]).then(answers => {
+          departments.splice((answers.listOfDepartments - 1), 1);
+          console.log(departments);
+        })
+    // Quit App
+    } else if (answers.mainMenu === "Quit") {
         console.log("QUIT");
       } else {
         initDirectory();
