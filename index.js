@@ -2,10 +2,10 @@
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
 const connection = require('./config/connection.js');
-const departments = require('directory.js');
-const roles = require('directory.js');
-const employees = require('directory.js');
-const managers = require('directory.js');
+const departments = require('./directory.js');
+const roles = require('./directory.js');
+const employees = require('./directory');
+const managers = require('./directory');
 
 // Main Menu
 async function initDirectory() {
@@ -140,10 +140,8 @@ async function initDirectory() {
             type: 'input',
             message: 'Adda Role, Sista!',
             name: 'newRoles'
-          }.then(answers => {
-            console.log(answers);
-            //"DELETE FROM employees WHERE id = ?";
-        }) 
+          }
+        ]);
       // Quit App
       } else {
         console.log("QUIT");
