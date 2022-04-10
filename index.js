@@ -319,7 +319,7 @@ async function initDirectory() {
       message: 'What would you like to do, Baby? (Use arrow keys)',
       name: 'mainMenu',
       choices: [
-        // employee questions
+        // employee menu options
         {  
           key: 'a',
           value: 'View All Employees',
@@ -336,7 +336,7 @@ async function initDirectory() {
           key: 'd',
           name: 'Update Employee Manager',
         },
-        // role questions
+        // role menu options
         {
           key: 'e',
           value: 'View All Roles',
@@ -349,7 +349,7 @@ async function initDirectory() {
           key: 'g',
           value: 'Remove Role',
         },
-        // department questions
+        // department menu options
         {
           key: 'h',
           value: 'View All Departments',
@@ -372,6 +372,7 @@ async function initDirectory() {
         },
       ],
     },
+  // View All Employees
   ]).then(answers => {
       if (answers.mainMenu === "View All Employees") {
         inquirer.prompt([
@@ -382,9 +383,24 @@ async function initDirectory() {
             choices: employees
           }
         ]);
+      // Add Employee
       }  else if (answers.mainMenu === "Add Employee") {
         employeeQuestions();
-      } else if (answers.mainMenu === "Remove Employee") {
+       // Update Employee Manager
+      }  else if (answers.mainMenu === "Update Employee Manager") {
+        const employeeManager = employee.map((employee) => {
+          name: 
+        })
+        inquirer.prompt([
+          {
+            type: 'list',
+            message: 'You\'re gonna have to pick a new manager!',
+            name: 'listOfEmployees',
+            choices: employees
+          }
+        ]);
+     // Remove Employee
+    } else if (answers.mainMenu === "Remove Employee") {
         const employeeChoices = employees.map((employee) => ({
           name: `${employee.value}`,
           value: employee.key
@@ -450,7 +466,7 @@ async function departmentQuestions() {
   })
 }
 
-// I need there to be employee related tasks
+// Employee Questions
 async function employeeQuestions() {
   const questions = await inquirer.prompt([
     {
@@ -481,7 +497,7 @@ async function employeeQuestions() {
   })
 }
 
-// I need there to be role related tasks
+// Role Questions
 async function roleQuestions() {
   const questions = await inquirer.prompt([
     {
