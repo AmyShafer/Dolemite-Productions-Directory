@@ -101,6 +101,16 @@ async function initDirectory() {
           }
         ]).then(answers => {
           console.log(answers);
+          const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)`;
+          const params = {
+            answers.first_name,
+            answers.last_name,
+            answers.role_id,
+            answers.manager_id
+          };
+          connection.query(sql, params, (err, results) => { 
+            console.log("Line 107")
+          })
         })
      // Remove Employee
      } else if (answers.mainMenu === "Remove Employee") {
