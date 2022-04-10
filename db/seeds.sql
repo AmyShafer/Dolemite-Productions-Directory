@@ -32,9 +32,9 @@ VALUES (1, "Actor", 250, 2),
        (25, "Writer", 700, 1);
 
 INSERT INTO employees (id, first_name, last_name, role_id, manager_id)
-VALUES (1, "Malaika", "Ahraam", 1, 29),
-       (2, "Al", "Banks", 1, 29),
-       (3, "Vince", "Barbi", 1, 29),
+VALUES (1, "Malaika", "Ahraam", 1, 29),  
+       (2, "Al", "Banks", 1, 29),    
+       (3, "Vince", "Barbi", 1, 29), 
        (4, "Joseph", "Bihari", 4),
        (5, "Julius", "Bihari", 4),
        (6, "Lester", "Bihari", 4),

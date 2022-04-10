@@ -1,7 +1,7 @@
 // Import and require mysql2
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
-const sequelize = require('./config/connection');
+const connection = require('./config/connection.js');
 
 // departments
 let departments = [
@@ -311,6 +311,42 @@ let employees = [
   }
 ];
 
+// managers 
+let managers = [
+  {
+    key: 'a',
+    value: 'Julius Bihari'
+  }, 
+  {
+    key: 'b',
+    value: 'Bobbie George'
+  },
+  {
+    key: 'c',
+    value: 'Claudia Jackson'
+  },
+  {
+    key: 'd',
+    value: 'Rex Lipton'
+  },
+  {
+    key: 'e',
+    value: 'D’Urville Martin'
+  },
+  {
+    key: 'f',
+    value: 'Rudy Ray Moore'
+  },
+  {
+    key: 'g',
+    value: 'Curtis Pulliam'
+  },
+  {
+    key: 'i',
+    value: 'Nicholas Josef von Sternberg'
+  }
+];
+
 // Main Menu
 async function initDirectory() {
   const questions = await inquirer.prompt([
@@ -366,6 +402,7 @@ async function initDirectory() {
           key: 'k',
           value: 'View Total Budget By Department',
         },
+        // Quit 
         {
           key: 'l',
           value: 'Quit',
@@ -384,23 +421,33 @@ async function initDirectory() {
           }
         ]);
       // Add Employee
-      }  else if (answers.mainMenu === "Add Employee") {
+      } else if (answers.mainMenu === "Add Employee") {
         employeeQuestions();
        // Update Employee Manager
-      }  else if (answers.mainMenu === "Update Employee Manager") {
-        const employeeManager = employee.map((employee) => {
-          name: 
-        })
+      } else if (answers.mainMenu === "Update Employee Manager") {
+        // const employeeManager = employees.map((employee) => ({
+        //   name: `${employee.value}`,
+        //   value: employee.key
+        // }));
         inquirer.prompt([
           {
             type: 'list',
-            message: 'You\'re gonna have to pick a new manager!',
+            message: 'Which employee needs a new manager?',
             name: 'listOfEmployees',
             choices: employees
+          },
+          {
+            type: 'list',
+            message: 'Pick a new manager, Man!',
+            name: 'listOfManagers',
+            choices: managers
           }
-        ]);
+        ]).then(answers => {
+          console.log(answers);
+        })
+      
      // Remove Employee
-    } else if (answers.mainMenu === "Remove Employee") {
+     } else if (answers.mainMenu === "Remove Employee") {
         const employeeChoices = employees.map((employee) => ({
           name: `${employee.value}`,
           value: employee.key
@@ -414,11 +461,10 @@ async function initDirectory() {
           }
         ]).then(answers => {
             console.log(answers);
-            "DELETE FROM employees WHERE id = ?";
-            console.log(employees);
+            //"DELETE FROM employees WHERE id = ?";
         }) 
       } else {
-        console.log("END");
+        console.log("QUIT");
       }
   })
 }
@@ -471,7 +517,7 @@ async function employeeQuestions() {
   const questions = await inquirer.prompt([
     {
       type: 'input',
-      message: 'Please give details about the new employee:',
+      message: 'Please give details about the new employee: (Hit Enter if you can dig it!)',
       name: 'employeeDetails',
     },
     {
