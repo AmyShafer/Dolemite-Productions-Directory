@@ -1,6 +1,6 @@
 # Dolemite Productions Directory
 
-Dolemite is my name and finding out information about my production company is my game! This application could also go by CMS or a Content Management System. At this joint, we decided that DPD or Dolemite Productions Directory was more our style but you can call us whatever you like! We just hope that you find our coding capabilities are out of sight!
+Dolemite is my name and finding out information about my production company is my game! This application could also go by CMS or a Content Management System. At this joint, we decided that DPD or Dolemite Productions Directory was more our style but you can call us whatever you like, Baby! We just hope that you find our coding capabilities are out of sight!
 
 ## Table of contents
 * [Technologies](#technologies)
@@ -15,7 +15,7 @@ Dolemite is my name and finding out information about my production company is m
 
 ## Technologies
 
-Dolemite's Directory was created using Node.js, MySQL2, Inquirer, and JavaScript. 
+Dolemite's Directory was created using Node.js, MySQL2, Inquirer, JavaScript, and Kung-Fu! 
 
 ## Mockup
 
@@ -29,14 +29,14 @@ In coding, it works best if you code what you know, and with Google, you can alw
 Inquirer's a trip but it don't havta trip a sista up! This link was very helpful for getting the directory's prompts in order! 
 [![Inquirer.js](https://img.shields.io/badge/npm%20package-Inquirer-blueviolet)](https://www.digitalocean.com/community/tutorials/nodejs-interactive-command-line-prompts)
 
-Here at DPD, we hadn't messed with the splice method in a while so we looked up this toy problem from ages ago. I tell ya, it did the trick!
+Here at DPD, we hadn't messed with the splice method in a while so we looked up this toy problem from ages ago. Man, it did the trick!
 [![Splice](https://img.shields.io/badge/splice-method-d701a3)](https://replit.com/@dumbledoresamy/practice-with-splice#index.js)
 
 ## Future Improvements
 
-In the future, DPD would like to organize their code so it's easier to follow. We did our best but things gotta little crazy, you know what I'm sayin'?! 
+In the future, DPD would like to organize our code so it's easier to follow. We did our best but things gotta little crazy, you know what we sayin'?! 
 
-Also, DPD would like to make is so the databases remain organized alphabetically, regardless of if the user adds or removes elements. 
+Also, DPD would like to it make is so the databases remain organized alphabetically, regardless of if the user adds or removes elements. 
 
 ---
 
