@@ -86,10 +86,6 @@ async function initDirectory() {
         employeeQuestions();
        // Update Employee Manager
       } else if (answers.mainMenu === "Update Employee Manager") {
-        // const employeeManager = employees.map((employee) => ({
-        //   name: `${employee.value}`,
-        //   value: employee.key
-        // }));
         inquirer.prompt([
           {
             type: 'list',
@@ -106,7 +102,6 @@ async function initDirectory() {
         ]).then(answers => {
           console.log(answers);
         })
-      
      // Remove Employee
      } else if (answers.mainMenu === "Remove Employee") {
         const employeeChoices = employees.map((employee) => ({
@@ -134,7 +129,7 @@ async function initDirectory() {
             name: 'listOfRoles',
             choices: roles
           }
-        ]);
+        ])
       // Add A Role
       } else if (answers.mainMenu === "Add Role") {
         inquirer.prompt([
@@ -211,11 +206,12 @@ async function initDirectory() {
           departments.splice((answers.listOfDepartments - 1), 1);
           console.log(departments);
         })
-    // Quit App
-    } else if (answers.mainMenu === "Quit") {
+      // Quit App
+      } else if (answers.mainMenu === "Quit") {
         console.log("QUIT");
       } else {
-        initDirectory();
+        // How do I make the menu keep going unless the user chooses "Quit"
+        generateDirectory();
       }
   })
 }
