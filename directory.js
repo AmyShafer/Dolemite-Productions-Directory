@@ -100,11 +100,11 @@ const directory = {
     },
     {
       key: '20',
-      name: 'Production Manager'
+      value: 'Production Manager'
     },
     {
       key: '21',
-      name: 'Set Decorator'
+      value: 'Set Decorator'
     },
     {
       key: '22',

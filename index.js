@@ -80,7 +80,10 @@ async function initDirectory() {
             name: 'listOfEmployees',
             choices: employees
           }
-        ]);
+        ]).then(answers => {
+          console.log(answers);
+          generateDirectory();
+        });
       // Add Employee
       } else if (answers.mainMenu === "Add Employee") {
         employeeQuestions();
@@ -103,13 +106,15 @@ async function initDirectory() {
           console.log(answers);
           const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)`;
           const params = {
-            answers.first_name,
-            answers.last_name,
-            answers.role_id,
-            answers.manager_id
+            answers
+            // answers.first_name,
+            // answers.last_name,
+            // answers.role_id,
+            // answers.manager_id
           };
           connection.query(sql, params, (err, results) => { 
-            console.log("Line 107")
+            console.log(params)
+            generateDirectory();
           })
         })
      // Remove Employee
@@ -128,6 +133,7 @@ async function initDirectory() {
         ]).then(answers => {
             employees.splice((answers.listOfEmployees - 1), 1);
             console.log(employees);
+            generateDirectory();
             //"DELETE FROM employees WHERE id = ?";
         }) 
       // View All Roles  
@@ -139,7 +145,10 @@ async function initDirectory() {
             name: 'listOfRoles',
             choices: roles
           }
-        ])
+        ]).then(answers => {
+          console.log(answers);
+          generateDirectory();
+        })
       // Add A Role
       } else if (answers.mainMenu === "Add Role") {
         inquirer.prompt([
@@ -150,11 +159,12 @@ async function initDirectory() {
           }
         ]).then(answers => {
           const addedRole = {
-            key: roles.length + 1,
+            key: (roles.length + 1).toString(),
             value: answers.newRole
           }
           roles.push(addedRole);
           console.log(roles);
+          generateDirectory();
         })
       // Remove a Role
       } else if (answers.mainMenu === "Remove Role") {
@@ -172,6 +182,7 @@ async function initDirectory() {
         ]).then(answers => {
           roles.splice((answers.listOfRoles - 1), 1);
           console.log(roles);
+          generateDirectory();
         })
       // View All Departments
       } else if (answers.mainMenu === "View All Departments") {
@@ -182,7 +193,10 @@ async function initDirectory() {
             name: 'listOfDepartments',
             choices: departments
           }
-        ])
+        ]).then(answers => {
+          console.log(answers);
+          generateDirectory();
+        })
       // Add Department
       } else if (answers.mainMenu === "Add Department") {
         inquirer.prompt([
@@ -193,12 +207,13 @@ async function initDirectory() {
           }
         ]).then(answers => {
           const addedDepartment = {
-            key: departments.length + 1,
+            key: (departments.length + 1).toString(),
             value: answers.newDepartment
           }
           departments.push(addedDepartment);
           console.log(departments);
-        })
+          generateDirectory();
+        });
       // Remove Department
       } else if (answers.mainMenu === "Remove Department") {
         const departmentChoices = departments.map((department) => ({
@@ -215,15 +230,17 @@ async function initDirectory() {
         ]).then(answers => {
           departments.splice((answers.listOfDepartments - 1), 1);
           console.log(departments);
-        })
+          generateDirectory();
+        });
       // Quit App
-      } else if (answers.mainMenu === "Quit") {
-        console.log("QUIT");
-      } else {
-        // How do I make the menu keep going unless the user chooses "Quit"
+      } else if (answers.mainMenu === "View Total Budget By Department") {
+        console.log("I\'ll get back to ya in 3-10 business days!");
         generateDirectory();
+      // Quit App  
+      } else {
+        console.log("See ya next time!");
       }
-  })
+  });
 }
 
 // Employee Questions
@@ -254,6 +271,7 @@ async function employeeQuestions() {
     }
   ]).then(answers => {
     console.log(answers);
+    generateDirectory();
   })
 }
 
