@@ -34,7 +34,7 @@ Here at DPD, we hadn't messed with the splice method in a while so we looked up 
 
 ## Future Improvements
 
-In the future, DPD would like to organize our code so it's easier to follow. We did our best but things gotta little crazy, you know what we sayin'?! 
+In the future, DPD would like to organize our code so it's easier to follow. We did our best but things gotta little crazy, you know how it goes! 
 
 Also, DPD would like to it make is so the databases remain organized alphabetically, regardless of if the user adds or removes elements. 
 

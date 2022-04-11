@@ -239,7 +239,7 @@ async function initDirectory() {
       // Quit App  
       } else {
         console.log("See ya next time!");
-      }
+      } 
   });
 }
 
