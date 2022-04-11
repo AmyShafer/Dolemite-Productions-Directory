@@ -81,7 +81,10 @@ async function initDirectory() {
             choices: employees
           }
         ]).then(answers => {
-          console.log(answers);
+          //console.log(answers);
+          connection.query(`SELECT * FROM employees`, function (err, results) {
+          console.log(results);
+          });
           generateDirectory();
         });
       // Add Employee
@@ -104,13 +107,9 @@ async function initDirectory() {
           }
         ]).then(answers => {
           console.log(answers);
-          const sql = `INSERT INTO employees(first_name, last_name, role_id, manager_id)`;
+          const sql = `INSERT INTO employees WHERE id = ?`;
           const params = {
-            answers
-            // answers.first_name,
-            // answers.last_name,
-            // answers.role_id,
-            // answers.manager_id
+            answers: 3
           };
           connection.query(sql, params, (err, results) => { 
             console.log(params)
@@ -146,9 +145,11 @@ async function initDirectory() {
             choices: roles
           }
         ]).then(answers => {
-          console.log(answers);
-          generateDirectory();
-        })
+          //console.log(answers);
+          connection.query(`SELECT * FROM roles`, function (err, results) {
+          console.log(results);
+            });
+          });
       // Add A Role
       } else if (answers.mainMenu === "Add Role") {
         inquirer.prompt([
@@ -194,9 +195,11 @@ async function initDirectory() {
             choices: departments
           }
         ]).then(answers => {
-          console.log(answers);
-          generateDirectory();
-        })
+          //console.log(answers);
+          connection.query(`SELECT * FROM departments`, function (err, results) {
+          console.log(results);
+          });
+        });
       // Add Department
       } else if (answers.mainMenu === "Add Department") {
         inquirer.prompt([
@@ -206,9 +209,9 @@ async function initDirectory() {
             name: 'newDepartment'
           }
         ]).then(answers => {
-          const addedDepartment = {
-            key: (departments.length + 1).toString(),
-            value: answers.newDepartment
+            const addedDepartment = {
+              key: (departments.length + 1).toString(),
+              value: answers.newDepartment
           }
           departments.push(addedDepartment);
           console.log(departments);
