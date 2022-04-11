@@ -259,10 +259,11 @@ async function employeeQuestions() {
       choices: employees,
     }
   ]).then(answers => {
-    //console.log(answers);
-    connection.query(`INSERT INTO employees (id, first_name, last_name, role_id, manager_id) VALUES (?)`, function (err, results) {
+    answers.id = employees.length + 1;
+    console.log(answers);
+    connection.query(`INSERT INTO employees (id, first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?, ?)`, [id, first_name, last_name, role_id, manager_id], function (err, answers) {
       if (err) {
-        console.log("Error, Baby!");
+        console.log(err);
       } else {
         console.log("Employee Added!");
       }
