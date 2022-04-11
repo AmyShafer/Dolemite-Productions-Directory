@@ -259,12 +259,12 @@ async function employeeQuestions() {
       choices: employees,
     }
   ]).then(answers => {
-    console.log(answers);
+    //console.log(answers);
     connection.query(`INSERT INTO employees (id, first_name, last_name, role_id, manager_id) VALUES (?)`, function (err, results) {
       if (err) {
         console.log("Error, Baby!");
       } else {
-        console.table("Employee Added!", results)
+        console.log("Employee Added!");
       }
     });
     generateDirectory();
