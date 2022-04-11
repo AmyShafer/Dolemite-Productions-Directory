@@ -10,8 +10,8 @@ CREATE TABLE departments (
 
 CREATE TABLE roles (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  role_title VARCHAR(100) NOT NULL,
-  role_salary DECIMAL NOT NULL,
+  title VARCHAR(100) NOT NULL,
+  salary DECIMAL NOT NULL,
   department_id INT,
   FOREIGN KEY (department_id)
   REFERENCES departments(id)

@@ -1,6 +1,7 @@
 // Import and require mysql2
 const mysql = require('mysql2');
 const inquirer = require('inquirer');
+const cTable = require('console.table');
 const connection = require('./config/connection.js');
 const directory = require('./directory.js');
 const departments = directory.departments;
@@ -73,20 +74,15 @@ async function initDirectory() {
   // View All Employees
   ]).then(answers => {
       if (answers.mainMenu === "View All Employees") {
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'Check out these employees, Man!',
-            name: 'listOfEmployees',
-            choices: employees
-          }
-        ]).then(answers => {
-          //console.log(answers);
+        //console.table("List of Employees", employees);
           connection.query(`SELECT * FROM employees`, function (err, results) {
-          console.log(results);
+            if (err) {
+              console.log("Error.");
+            } else {
+              console.log(results);
+            }
           });
-          generateDirectory();
-        });
+          //generateDirectory();
       // Add Employee
       } else if (answers.mainMenu === "Add Employee") {
         employeeQuestions();
