@@ -74,15 +74,14 @@ async function initDirectory() {
   // View All Employees
   ]).then(answers => {
       if (answers.mainMenu === "View All Employees") {
-        //console.table("List of Employees", employees);
           connection.query(`SELECT * FROM employees`, function (err, results) {
             if (err) {
               console.log("Error.");
             } else {
-              console.log(results);
+              console.table("List of Employees", results);
             }
+            generateDirectory();
           });
-          //generateDirectory();
       // Add Employee
       } else if (answers.mainMenu === "Add Employee") {
         employeeQuestions();
@@ -133,19 +132,15 @@ async function initDirectory() {
         }) 
       // View All Roles  
       } else if (answers.mainMenu === "View All Roles") {
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'The sky\'s the limit at Dolemite Productions, Baby!',
-            name: 'listOfRoles',
-            choices: roles
+        connection.query(`SELECT * FROM roles`, function (err, results) {
+          if (err) {
+            console.log("Error, Baby!");
+          } else {
+            console.log("The sky\'s the limit at Dolemite Productions, Baby!");
+            console.table("List of Roles", results)
           }
-        ]).then(answers => {
-          //console.log(answers);
-          connection.query(`SELECT * FROM roles`, function (err, results) {
-          console.log(results);
-            });
-          });
+          generateDirectory();
+        });
       // Add A Role
       } else if (answers.mainMenu === "Add Role") {
         inquirer.prompt([
@@ -183,19 +178,14 @@ async function initDirectory() {
         })
       // View All Departments
       } else if (answers.mainMenu === "View All Departments") {
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'Departments? We gotta few!',
-            name: 'listOfDepartments',
-            choices: departments
-          }
-        ]).then(answers => {
-          //console.log(answers);
           connection.query(`SELECT * FROM departments`, function (err, results) {
-          console.log(results);
+            if (err) {
+              console.log("Dang! Somethang broke!");
+            } else {
+              console.table("List of Departments", results);
+            }
+            generateDirectory();
           });
-        });
       // Add Department
       } else if (answers.mainMenu === "Add Department") {
         inquirer.prompt([
@@ -270,10 +260,16 @@ async function employeeQuestions() {
     }
   ]).then(answers => {
     console.log(answers);
+    connection.query(`INSERT INTO employees (id, first_name, last_name, role_id, manager_id) VALUES (?)`, function (err, results) {
+      if (err) {
+        console.log("Error, Baby!");
+      } else {
+        console.table("Employee Added!", results)
+      }
+    });
     generateDirectory();
   })
 }
-
 // Pull data from the user inputs to dynamically create the cms
 const generateDirectory = async() => {
   console.log("Hold on your seats!");
