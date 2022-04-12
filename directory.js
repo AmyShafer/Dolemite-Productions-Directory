@@ -3,344 +3,344 @@ const directory = {
   // departments
   departments: [
     {
-      key: '1',
-      value: 'Crew'
+      key: 'Crew',
+      value: 1
     },
     {
-      key: '2',
-      value: 'Cast'
+      key: 'Cast',
+      value: 2
     },
     {
-      key: '3',
-      value: 'Martial Arts'
+      key: 'Martial Arts',
+      value: 3
     },
     {
-      key: '4',
-      value: 'Investors'
+      key: 'Investors',
+      value: 4
     },
   ],
   
   // roles
   roles: [
     {
-      key: '1',
-      value: 'Actor'
+      key: 'Actor',
+      value: 1
     },
     {
-      key: '2',
-      value: 'Assistant Cameraman'
+      key: 'Assistant Cameraman',
+      value: 2
     },
     {
-      key: '3',
-      value: 'Assistant Director'
+      key: 'Assistant Director',
+      value: 3
     },
     {
-      key: '4',
-      value: 'Backer'
+      key: 'Backer',
+      value: 4
     },
     {
-      key: '5',
-      value: 'Cinematographer'
+      key: 'Cinematographer',
+      value: 5
     },
     {
-      key: '6',
-      value: 'Director'
+      key: 'Director',
+      value: 6
     },
     {
-      key: '7',
-      value: 'Editor'
+      key: 'Editor',
+      value: 7
     },
     {
-      key: '8',
-      value: 'Fight Choreographer'
+      key: 'Fight Choreographer',
+      value: 8
     },
     {
-      key: '9',
-      value: 'Gaffer'
+      key: 'Gaffer',
+      value: 9
     },
     {
-      key: '10',
-      value: 'Grip'
+      key: 'Grip',
+      value: 10
     },
     {
-      key: '11',
-      value: 'Lightweight Karate Champion'
+      key: 'Lightweight Karate Champion',
+      value: 11
     },
     {
-      key: '12',
-      value: 'Make-up'
+      key: 'Make-up',
+      value: 12
     },
     {
-      key: '13',
-      value: 'Martial Arts Assistant Director'
+      key: 'Martial Arts Assistant Director',
+      value: 13
     },
     {
-      key: '14',
-      value: 'Master Samurai Swordsman'
+      key: 'Master Samurai Swordsman',
+      value: 14
     },
     {
-      key: '15',
-      value: 'Music Arranger'
+      key: 'Music Arranger',
+      value: 15
     },
     {
-      key: '16',
-      value: 'Music Consultant'
+      key: 'Music Consultant',
+      value: 16
     },
     {
-      key: '17',
-      value: 'Negative Editor'
+      key: 'Negative Editor',
+      value: 17
     },
     {
-      key: '18',
-      value: 'Producer'
+      key: 'Producer',
+      value: 18
     },
     {
-      key: '19',
-      value: 'Production Assistant'
+      key: 'Production Assistant',
+      value: 19
     },
     {
-      key: '20',
-      value: 'Production Manager'
+      key: 'Production Manager',
+      value: 20
     },
     {
-      key: '21',
-      value: 'Set Decorator'
+      key: 'Set Decorator',
+      value: 21
     },
     {
-      key: '22',
-      value: 'Sound Editor'
+      key: 'Sound Editor',
+      value: 22
     },
     {
-      key: '23',
-      value: 'Sound Engineer'
+      key: 'Sound Engineer',
+      value: 23
     },
     {
-      key: '24',
-      value: 'Special Effects'
+      key: 'Special Effects',
+      value: 24
     },
     {
-      key: '25',
-      value: 'Writer',
+      key: 'Writer',
+      value: 25,
     },
   ],
   
   // employees
   employees: [
     {
-      key: '1',
-      value: 'Malaika Ahraam'
+      key: 'Malaika Ahraam',
+      value: 1
     },
     {
-      key: '2',
-      value: 'Al Banks'
+      key: 'Al Banks',
+      value: 2
     },
     {
-      key: '3',
-      value: 'Vince Barbi'
+      key: 'Vince Barbi',
+      value: 3
     },
     {
-      key: '4',
-      value: 'Joseph Bihari'
+      key: 'Joseph Bihari',
+      value: 4
     },
     {
-      key: '5',
-      value: 'Julius Bihari'
+      key: 'Julius Bihari',
+      value: 5
     },
     {
-      key: '6',
-      value: 'Lester Bihari'
+      key: 'Lester Bihari',
+      value: 6
     },
     {
-      key: '7',
-      value: 'Ted Brinson'
+      key: 'Ted Brinson',
+      value: 7
     },
     {
-      key: '8',
-      value: 'Marie Carter'
+      key: 'Marie Carter',
+      value: 8
     },
     {
-      key: '9',
-      value: 'Junior Cranberry'
+      key: 'Junior Cranberry',
+      value: 9
     },
     {
-      key: '10',
-      value: 'Norval Crutcher'
+      key: 'Norval Crutcher',
+      value: 10
     },
     {
-      key: '11',
-      value: 'Gene Davis'
+      key: 'Gene Davis',
+      value: 11
     },
     {
-      key: '12',
-      value: 'Von Dutch'
+      key: 'Von Dutch',
+      value: 12
     },
     {
-      key: '13',
-      value: 'Warde Egan'
+      key: 'Warde Egan',
+      value: 13
     },
     {
-      key: '14',
-      value: 'Mother Fear'
+      key: 'Mother Fear',
+      value: 14
     },
     {
-      key: '15',
-      value: 'Bobbie George'
+      key: 'Bobbie George',
+      value: 15
     },
     {
-      key: '16',
-      value: 'James Gough'
+      key: 'James Gough',
+      value: 16
     },
     {
-      key: '17',
-      value: 'Timothy Grace'
+      key: 'Timothy Grace',
+      value: 17
     },
     {
-      key: '18',
-      value: 'John Ashley Hamilton'
+      key: 'John Ashley Hamilton',
+      value: 18
     },
     {
-      key: '19',
-      value: 'Josephine Harris'
+      key: 'Josephine Harris',
+      value: 19
     },
     {
-      key: '20',
-      value: 'Michael Hereford'
+      key: 'Michael Hereford',
+      value: 20
     },
     {
-      key: '21',
-      value: 'Howard Jackson'
+      key: 'Howard Jackson',
+      value: 21
     },
     {
-      key: '22',
-      value: 'Claudia Jackson'
+      key: 'Claudia Jackso',
+      value: 22
     },
     {
-      key: '23',
-      value: 'Jerry Jones'
+      key: 'Jerry Jones',
+      value: 23
     },
     {
-      key: '24',
-      value: 'John Kirkland'
+      key: 'John Kirkland',
+      value: 24
     },
     {
-      key: '25',
-      value: 'Jack LaMantiain'
+      key: 'Jack LaMantain',
+      value: 25
     },
     {
-      key: '26',
-      value: 'Jean Lewis'
+      key: 'Jean Lewis',
+      value: 26
     },
     {
-      key: '27',
-      value: 'Princess Lilio'
+      key: 'Princess Lilio',
+      value: 27
     },
     {
-      key: '28',
-      value: 'Rex Lipton'
+      key: 'Rex Lipton',
+      value: 28
     },
     {
-      key: '29',
-      value: 'D’Urville Martin'
+      key: 'D’Urville Martin',
+      value: 29
     },
     {
-      key: '30',
-      value: 'Hugh McDonald'
+      key: 'Hugh McDonald',
+      value: 30
     },
     {
-      key: '31',
-      value: 'Carmella Di Milo'
+      key: 'Carmella Di Milo',
+      value: 31
     },
     {
-      key: '32',
-      value: 'Rudy Ray Moore'
+      key: 'Rudy Ray Moore',
+      value: 32
     },
     {
-      key: '33',
-      value: 'Eric Nero'
+      key: 'Eric Nero',
+      value: 33
     },
     {
-      key: '34',
-      value: 'Randy Ornelas'
+      key: 'Randy Ornelas',
+      value: 34
     },
     {
-      key: '35',
-      value: 'Curtis Pulliam'
+      key: 'Curtis Pulliam',
+      value: 35
     },
     {
-      key: '36',
-      value: 'Hy Pyke'
+      key: 'Hy Pyke',
+      value: 36
     },
     {
-      key: '37',
-      value: 'Lady Reed'
+      key: 'Lady Reed',
+      value: 37
     },
     {
-      key: '38',
-      value: 'Marvin Reesee'
+      key: 'Marvin Reese',
+      value: 38
     },
     {
-      key: '39',
-      value: 'George Selin'
+      key: 'George Selin',
+      value: 39
     },
     {
-      key: '40',
-      value: 'Nicholas Josef von Sternberg'
+      key: 'Nicholas Josef von Sternberg',
+      value: 40
     },
     {
-      key: '41',
-      value: 'Bruce Stevens'
+      key: 'Bruce Stevens',
+      value: 41
     },
     {
-      key: '42',
-      value: 'John Wagner'
+      key: 'John Wagner',
+      value: 42
     },
     {
-      key: '43',
-      value: 'Harry Wollman'
+      key: 'Harry Wollman',
+      value: 43
     },
     {
-      key: '44',
-      value: 'Arthur Wright'
+      key: 'Arthur Wright',
+      value: 44
     },
     {
-      key: '45',
-      value: 'Carol Yasunaga'
+      key: 'Carol Yasunaga',
+      value: 45
     }
   ],
   
   // managers 
   managers: [
   {
-    key: 'a',
-    value: 'Julius Bihari'
+    key: 'Julius Bihari',
+    value: 5
   }, 
   {
-    key: 'b',
-    value: 'Bobbie George'
+    key: 'Bobbie George',
+    value: 15
   },
   {
-    key: 'c',
-    value: 'Claudia Jackson'
+    key: 'Claudia Jackson',
+    value: 22
   },
   {
-    key: 'd',
-    value: 'Rex Lipton'
+    key: 'Rex Lipton',
+    value: 28
   },
   {
-    key: 'e',
-    value: 'D’Urville Martin'
+    key: 'D’Urville Martin',
+    value: 29
   },
   {
-    key: 'f',
-    value: 'Rudy Ray Moore'
+    key: 'Rudy Ray Moore',
+    value: 32
   },
   {
-    key: 'g',
-    value: 'Curtis Pulliam'
+    key: 'Curtis Pulliam',
+    value: 35
   },
   {
-    key: 'i',
-    value: 'Nicholas Josef von Sternberg'
+    key: 'Nicholas Josef von Sternberg',
+    value: 40
   }
   ]
 }
