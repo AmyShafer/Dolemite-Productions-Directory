@@ -143,21 +143,7 @@ async function initDirectory() {
         });
       // Add A Role
       } else if (answers.mainMenu === "Add Role") {
-        inquirer.prompt([
-          {
-            type: 'input',
-            message: 'Adda Role, Sista!',
-            name: 'newRole'
-          }
-        ]).then(answers => {
-          const addedRole = {
-            key: (roles.length + 1).toString(),
-            value: answers.newRole
-          }
-          roles.push(addedRole);
-          console.log(roles);
-          generateDirectory();
-        })
+        roleQuestions();
       // Remove a Role
       } else if (answers.mainMenu === "Remove Role") {
         const roleChoices = roles.map((role) => ({
@@ -188,21 +174,7 @@ async function initDirectory() {
           });
       // Add Department
       } else if (answers.mainMenu === "Add Department") {
-        inquirer.prompt([
-          {
-            type: 'input',
-            message: 'Another Department? Not sure we got the bank for that, Baby! You know what I\'m sayin?!',
-            name: 'newDepartment'
-          }
-        ]).then(answers => {
-            const addedDepartment = {
-              key: (departments.length + 1).toString(),
-              value: answers.newDepartment
-          }
-          departments.push(addedDepartment);
-          console.log(departments);
-          generateDirectory();
-        });
+        departmentQuestions();   
       // Remove Department
       } else if (answers.mainMenu === "Remove Department") {
         const departmentChoices = departments.map((department) => ({
@@ -242,28 +214,30 @@ async function employeeQuestions() {
     },
     {
       type: 'input',
-      name: 'What is the employee\'s first name?',
+      message: 'What is the employee\'s first name?',
+      name: 'first_name'
     },
     {
       type: 'input',
-      name: 'What is the employee\'s last name?',
+      message: 'What is the employee\'s last name?',
+      name: 'last_name'
     },
     {
       type: 'list',
-      name: 'What is the employee\'s role?',
+      message: 'What is the employee\'s role?',
+      name: 'role_id',
       choices: roles,
     },
     {
       type: 'list',
-      name: 'Who is the employee\'s manager?',
+      message: 'Who is the employee\'s manager?',
+      name: 'manager_id',
       choices: employees,
     }
   ]).then(answers => {
-    //answers.id = employees.length + 1;
-    console.log(answers);
-    connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [ 'first_name', 'last_name', 'role_id', 'manager_id'], function (err, answers) {
+    connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, answers.role_id, answers.manager_id], function (err, results) {
       if (err) {
-        console.log(err);
+        console.log("Error, Baby!");
       } else {
         console.log("Employee Added!");
       }
@@ -271,6 +245,68 @@ async function employeeQuestions() {
     generateDirectory();
   })
 }
+
+// Role Questions
+async function roleQuestions() {
+  const questions = await inquirer.prompt([
+  {
+    type: 'input',
+    message: 'Hit Enter to adda Role, Sista!',
+    name: 'roleDetails'
+  },
+  {
+    type: 'input',
+    message: 'What role title you thinkin\'?',
+    name: 'title'
+  },
+  {
+    type: 'input',
+    message: 'Write a Salary. Don\'t go crazy!',
+    name: 'salary'
+  },
+  {
+    type: 'input',
+    message: 'In what department does this role reside, Baby!',
+    name: 'department_id'
+  }
+]).then(answers => {
+    console.log(answers);
+    connection.query(`INSERT INTO roles (title, salary, department_id ) VALUES (?, ?, ?)`, [answers.title, answers.salary, answers. department_id], function (err, results) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("A role was added, yes it was!");
+      }
+    });
+    generateDirectory();
+  })
+}
+
+// Department Questions
+async function departmentQuestions() {
+  const questions = await inquirer.prompt([
+    {
+      type: 'input',
+      message: 'Another Department? Not sure we got the bank for that, Baby! You know what I\'m sayin?! But hit Enter to proceed.',
+      name: 'newDepartment'
+    },
+    {
+      type: 'input',
+      message: 'Do me a solid and give me the name of the new department.',
+      name: 'department_name'
+    },
+  ]).then(answers => {
+    connection.query(`INSERT INTO departments (department_name) VALUES (?)`, [answers.department_name], function(err, results) {
+      if (err) {
+        console.log("Error, Baby!");
+      } else {
+        console.log("Department Added!");
+      }
+    });
+    generateDirectory();
+  });
+}
+
 // Pull data from the user inputs to dynamically create the cms
 const generateDirectory = async() => {
   console.log("Hold on your seats!");
