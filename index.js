@@ -179,7 +179,7 @@ async function managerUpdate() {
       choices: managers
     }
   ]).then(answers => {
-    connection.query(`UPDATE employees SET managers_id ? WHERE id = ?`, answers.listOfManagers, answers.listOfEmployees, function(err, results) { 
+    connection.query(`UPDATE employees SET manager_id = ? WHERE id = ?`, [answers.listOfManagers, answers.listOfEmployees], function(err, results) { 
       if (err) {
         console.log(err);
       } else {
