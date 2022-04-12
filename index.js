@@ -165,21 +165,29 @@ async function addEmployee() {
 
 //Manager Update Bonus
 async function managerUpdate() {
+  const employeeList = [];
+  const pickEmployee = employees.map(element => {
+    employeeList.push(element.key);
+  });
+  const managerList = [];
+  const pickManager = managers.map(element => {
+    managerList.push(element.key);
+  });
   const questions = await inquirer.prompt([
     {
       type: 'list',
       message: 'Which employee needs a new manager?',
       name: 'listOfEmployees',
-      choices: employees
+      choices: employeeList
     },
     {
       type: 'list',
       message: 'Pick a new manager, Man!',
       name: 'listOfManagers',
-      choices: managers
+      choices: managerList
     }
   ]).then(answers => {
-    connection.query(`UPDATE employees SET manager_id = ? WHERE id = ?`, [answers.listOfManagers, answers.listOfEmployees], function(err, results) { 
+    connection.query(`UPDATE employees SET manager_id = ? WHERE id = ?`, [answers.listOfManagers, answers.key], function(err, results) { 
       if (err) {
         console.log(err);
       } else {
