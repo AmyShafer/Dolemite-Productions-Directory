@@ -74,126 +74,31 @@ async function initDirectory() {
   // View All Employees
   ]).then(answers => {
       if (answers.mainMenu === "View All Employees") {
-          connection.query(`SELECT * FROM employees`, function (err, results) {
-            if (err) {
-              console.log("Error.");
-            } else {
-              console.table("List of Employees", results);
-            }
-            generateDirectory();
-          });
+        viewEmployees();    
       // Add Employee
       } else if (answers.mainMenu === "Add Employee") {
-        employeeQuestions();
+        addEmployee();
        // Update Employee Manager
       } else if (answers.mainMenu === "Update Employee Manager") {
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'Which employee needs a new manager?',
-            name: 'listOfEmployees',
-            choices: employees
-          },
-          {
-            type: 'list',
-            message: 'Pick a new manager, Man!',
-            name: 'listOfManagers',
-            choices: managers
-          }
-        ]).then(answers => {
-          console.log(answers);
-          const sql = `INSERT INTO employees WHERE id = ?`;
-          const params = {
-            answers: 3
-          };
-          connection.query(sql, params, (err, results) => { 
-            console.log(params)
-            generateDirectory();
-          })
-        })
+        managerUpdate();
      // Remove Employee
      } else if (answers.mainMenu === "Remove Employee") {
-        const employeeChoices = employees.map((employee) => ({
-          name: `${employee.value}`,
-          value: employee.key
-        }));
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'Hey, what you doing?! Give a Brother/Sister another chance!',
-            name: 'listOfEmployees',
-            choices: employeeChoices
-          }
-        ]).then(answers => {
-            employees.splice((answers.listOfEmployees - 1), 1);
-            console.log(employees);
-            generateDirectory();
-            //"DELETE FROM employees WHERE id = ?";
-        }) 
+      removeEmployee();
       // View All Roles  
       } else if (answers.mainMenu === "View All Roles") {
-        connection.query(`SELECT * FROM roles`, function (err, results) {
-          if (err) {
-            console.log("Error, Baby!");
-          } else {
-            console.log("The sky\'s the limit at Dolemite Productions, Baby!");
-            console.table("List of Roles", results)
-          }
-          generateDirectory();
-        });
-      // Add A Role
+        viewRoles();
       } else if (answers.mainMenu === "Add Role") {
-        roleQuestions();
-      // Remove a Role
+        addRole();
       } else if (answers.mainMenu === "Remove Role") {
-        const roleChoices = roles.map((role) => ({
-          name: `${role.value}`,
-          value: role.key
-        }));
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'You sure you wanna be doing that?!',
-            name: 'listOfRoles',
-            choices: roleChoices
-          }
-        ]).then(answers => {
-          roles.splice((answers.listOfRoles - 1), 1);
-          console.log(roles);
-          generateDirectory();
-        })
+        removeRole();
       // View All Departments
       } else if (answers.mainMenu === "View All Departments") {
-          connection.query(`SELECT * FROM departments`, function (err, results) {
-            if (err) {
-              console.log("Dang! Somethang broke!");
-            } else {
-              console.table("List of Departments", results);
-            }
-            generateDirectory();
-          });
-      // Add Department
+        viewDepartments()
       } else if (answers.mainMenu === "Add Department") {
-        departmentQuestions();   
-      // Remove Department
+        addDepartment();   
       } else if (answers.mainMenu === "Remove Department") {
-        const departmentChoices = departments.map((department) => ({
-          name: `${department.value}`,
-          value: department.key 
-        }));
-        inquirer.prompt([
-          {
-            type: 'list',
-            message: 'No, no, no! What you doin\', Man?!',
-            name: 'listOfDepartments',
-            choices: departmentChoices
-          }
-        ]).then(answers => {
-          departments.splice((answers.listOfDepartments - 1), 1);
-          console.log(departments);
-          generateDirectory();
-        });
-      // Quit App
+        removeDepartment();
+      // Budget -- Not Functional Yet
       } else if (answers.mainMenu === "View Total Budget By Department") {
         console.log("I\'ll get back to ya in 3-10 business days!");
         generateDirectory();
@@ -204,8 +109,20 @@ async function initDirectory() {
   });
 }
 
-// Employee Questions
-async function employeeQuestions() {
+// View Employees
+async function viewEmployees() {
+  connection.query(`SELECT * FROM employees`, function (err, results) {
+    if (err) {
+      console.log("Error.");
+    } else {
+      console.table("List of Employees", results);
+    }
+    generateDirectory();
+  });
+}
+
+// Add an Employee
+async function addEmployee() {
   const questions = await inquirer.prompt([
     {
       type: 'input',
@@ -246,8 +163,68 @@ async function employeeQuestions() {
   })
 }
 
-// Role Questions
-async function roleQuestions() {
+//Manager Update Bonus
+async function managerUpdate() {
+  const questions = await inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Which employee needs a new manager?',
+      name: 'listOfEmployees',
+      choices: employees
+    },
+    {
+      type: 'list',
+      message: 'Pick a new manager, Man!',
+      name: 'listOfManagers',
+      choices: managers
+    }
+  ]).then(answers => {
+    connection.query(`UPDATE employees SET managers_id ? WHERE id = ?`, answers.listOfManagers, answers.listOfEmployees, function(err, results) { 
+      if (err) {
+        console.log(err);
+      } else {
+        console.log("Manager update complete!");
+      }
+    });
+    generateDirectory();
+  })
+}
+
+// Remove an Employee
+async function removeEmployee() {
+  const questions = await inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Hey, what you doing?! Give a Brother/Sister another chance!',
+      name: 'listOfEmployees',
+      choices: employees
+    }
+    ]).then(answers => {
+      connection.query(`DELETE FROM employees WHERE id = ?`, answers.listOfEmployees, function(err, results) {
+        if (err) {
+          console.log("Error, Man!");
+        } else {
+          console.log("That was cold, Man!");
+        }
+      })
+    generateDirectory();
+  }) 
+}
+
+async function viewRoles() {
+  connection.query(`SELECT * FROM roles`, function (err, results) {
+    if (err) {
+      console.log("Error, Baby!");
+    } else {
+      console.log("The sky\'s the limit at Dolemite Productions, Baby!");
+      console.table("List of Roles", results)
+    }
+    generateDirectory();
+  });
+}
+
+// Add a Role
+async function addRole() {
   const questions = await inquirer.prompt([
   {
     type: 'input',
@@ -282,8 +259,40 @@ async function roleQuestions() {
   })
 }
 
-// Department Questions
-async function departmentQuestions() {
+// Remove a Role
+async function removeRole() {
+  const questions = await inquirer.prompt([
+    {
+      type: 'list',
+      message: 'Hey now! Chill?!',
+      name: 'listOfRoles',
+      choices: roles
+    }
+  ]).then(answers => {
+    connection.query(`DELETE FROM roles WHERE id = ?`, answers.listOfRoles, function(err, results) {
+      if (err) {
+        console.log("Error, Baby!");
+      } else {
+        console.log("Role Deleted!");
+      }
+    });
+    generateDirectory();
+  });
+}
+
+async function viewDepartments() {
+  connection.query(`SELECT * FROM departments`, function (err, results) {
+    if (err) {
+      console.log("Dang! Somethang broke!");
+    } else {
+      console.table("List of Departments", results);
+    }
+    generateDirectory();
+  });
+}
+
+// Add a Department
+async function addDepartment() {
   const questions = await inquirer.prompt([
     {
       type: 'input',
@@ -303,6 +312,26 @@ async function departmentQuestions() {
         console.log("Department Added!");
       }
     });
+    generateDirectory();
+  });
+}
+
+async function removeDepartment () {
+  const questions = await inquirer.prompt([
+    {
+      type: 'list',
+      message: 'No, no, no! What you doin\', Man?!',
+      name: 'listOfDepartments',
+      choices: departments
+    }
+  ]).then(answers => {
+    connection.query(`DELETE FROM departments WHERE id = ?`, answers.listOfDepartments, function(err, results) {
+      if (err) {
+        console.log("Error, Baby!");
+      } else {
+        console.log("Damn! Department Gone!");
+      }
+    })
     generateDirectory();
   });
 }
