@@ -123,6 +123,14 @@ async function viewEmployees() {
 
 // Add an Employee
 async function addEmployee() {
+  const roleList = [];
+  const pickRole = roles.map(role => {
+    roleList.push(role.key)
+  });
+  const managerList = [];
+  const pickManager = managers.map(manager => {
+    managerList.push(manager.key);
+  });
   const questions = await inquirer.prompt([
     {
       type: 'input',
@@ -143,18 +151,20 @@ async function addEmployee() {
       type: 'list',
       message: 'What is the employee\'s role?',
       name: 'role_id',
-      choices: roles,
+      choices: roleList,
     },
     {
       type: 'list',
       message: 'Who is the employee\'s manager?',
       name: 'manager_id',
-      choices: employees,
+      choices: managerList,
     }
   ]).then(answers => {
-    connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, answers.role_id, answers.manager_id], function (err, results) {
+    const role_num = roles.find(role => answers.role_id === role.key);
+    const manager_num = managers.find(manager => answers.manager_id === manager.key);
+    connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, role_num.value, manager_num.value], function (err, results) {
       if (err) {
-        console.log("Error, Baby!");
+        console.log("Snaps! You have reached an error!");
       } else {
         console.log("Employee Added!");
       }
@@ -166,30 +176,32 @@ async function addEmployee() {
 //Manager Update Bonus
 async function managerUpdate() {
   const employeeList = [];
-  const pickEmployee = employees.map(element => {
-    employeeList.push(element.key);
+  const pickEmployee = employees.map(employee => {
+    employeeList.push(employee.key);
   });
   const managerList = [];
-  const pickManager = managers.map(element => {
-    managerList.push(element.key);
+  const pickManager = managers.map(manager => {
+    managerList.push(manager.key);
   });
   const questions = await inquirer.prompt([
     {
       type: 'list',
       message: 'Which employee needs a new manager?',
-      name: 'listOfEmployees',
+      name: 'employee_id',
       choices: employeeList
     },
     {
       type: 'list',
       message: 'Pick a new manager, Man!',
-      name: 'listOfManagers',
+      name: 'manager_id',
       choices: managerList
     }
   ]).then(answers => {
-    connection.query(`UPDATE employees SET manager_id = ? WHERE id = ?`, [answers.listOfManagers, answers.key], function(err, results) { 
+    const employee_num = employees.find(employee => answers.employee_id === employee.key);
+    const manager_num = managers.find(manager => answers.manager_id === manager.key);
+    connection.query(`UPDATE employees SET manager_id = ? WHERE id = ?`, [manager_num.value, employee_num.value], function(err, results) { 
       if (err) {
-        console.log(err);
+        console.log("Dang! This did not go down as expected!");
       } else {
         console.log("Manager update complete!");
       }
@@ -200,15 +212,20 @@ async function managerUpdate() {
 
 // Remove an Employee
 async function removeEmployee() {
+  const employeeList = [];
+  const pickEmployee = employees.map(employee => {
+    employeeList.push(employee.key);
+  });
   const questions = await inquirer.prompt([
     {
       type: 'list',
       message: 'Hey, what you doing?! Give a Brother/Sister another chance!',
-      name: 'listOfEmployees',
-      choices: employees
+      name: 'employee_id',
+      choices: employeeList
     }
     ]).then(answers => {
-      connection.query(`DELETE FROM employees WHERE id = ?`, answers.listOfEmployees, function(err, results) {
+      const employee_num = employees.find(employee => answers.employee_id === employee.key);
+      connection.query(`DELETE FROM employees WHERE id = ?`, [employee_num.value], function(err, results) {
         if (err) {
           console.log("Error, Man!");
         } else {
@@ -233,6 +250,10 @@ async function viewRoles() {
 
 // Add a Role
 async function addRole() {
+  const departmentList = [];
+  const pickDepartment = departments.map(department => {
+    departmentList.push(department.key)
+  })
   const questions = await inquirer.prompt([
   {
     type: 'input',
@@ -250,13 +271,14 @@ async function addRole() {
     name: 'salary'
   },
   {
-    type: 'input',
+    type: 'list',
     message: 'In what department does this role reside, Baby!',
-    name: 'department_id'
+    name: 'department_id',
+    choices: departmentList
   }
 ]).then(answers => {
-    console.log(answers);
-    connection.query(`INSERT INTO roles (title, salary, department_id ) VALUES (?, ?, ?)`, [answers.title, answers.salary, answers. department_id], function (err, results) {
+    const department_num = departments.find(department => answers.department_id === department.key);
+    connection.query(`INSERT INTO roles (title, salary, department_id ) VALUES (?, ?, ?)`, [answers.title, answers.salary, department_num.value], function (err, results) {
       if (err) {
         console.log(err);
       } else {
@@ -269,15 +291,20 @@ async function addRole() {
 
 // Remove a Role
 async function removeRole() {
+  const roleList = [];
+  const pickRole = roles.map(role => {
+    roleList.push(role.key)
+  })
   const questions = await inquirer.prompt([
     {
       type: 'list',
       message: 'Hey now! Chill?!',
-      name: 'listOfRoles',
-      choices: roles
+      name: 'role_id',
+      choices: roleList
     }
   ]).then(answers => {
-    connection.query(`DELETE FROM roles WHERE id = ?`, answers.listOfRoles, function(err, results) {
+    const role_num = roles.find(role => answers.role_id === role.key);
+    connection.query(`DELETE FROM roles WHERE id = ?`, role_num.value, function(err, results) {
       if (err) {
         console.log("Error, Baby!");
       } else {
@@ -325,15 +352,20 @@ async function addDepartment() {
 }
 
 async function removeDepartment () {
+  const departmentList = [];
+  const pickDepartment = departments.map(department => {
+    departmentList.push(department.key);
+  });
   const questions = await inquirer.prompt([
     {
       type: 'list',
       message: 'No, no, no! What you doin\', Man?!',
-      name: 'listOfDepartments',
-      choices: departments
+      name: 'department_id',
+      choices: departmentList
     }
   ]).then(answers => {
-    connection.query(`DELETE FROM departments WHERE id = ?`, answers.listOfDepartments, function(err, results) {
+    const department_num = departments.find(department => answers.department_id === department.key);
+    connection.query(`DELETE FROM departments WHERE id = ?`, department_num.value, function(err, results) {
       if (err) {
         console.log("Error, Baby!");
       } else {
