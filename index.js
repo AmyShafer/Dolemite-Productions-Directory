@@ -81,9 +81,9 @@ async function initDirectory() {
        // Update Employee Manager
       } else if (answers.mainMenu === "Update Employee Manager") {
         managerUpdate();
-     // Remove Employee
-     } else if (answers.mainMenu === "Remove Employee") {
-      removeEmployee();
+      // Remove Employee
+      } else if (answers.mainMenu === "Remove Employee") {
+        removeEmployee();
       // View All Roles  
       } else if (answers.mainMenu === "View All Roles") {
         viewRoles();
@@ -111,7 +111,7 @@ async function initDirectory() {
 
 // View Employees
 async function viewEmployees() {
-  connection.query(`SELECT * FROM employees`, function (err, results) {
+  connection.query(`SELECT employees.id, employees.first_name, employees.last_name AS employee, roles.title FROM roles LEFT JOIN employees ON employees.id = roles.id ORDER BY employees.id;`, function (err, results) {
     if (err) {
       console.log("Error.");
     } else {
