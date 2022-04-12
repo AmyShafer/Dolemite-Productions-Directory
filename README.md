@@ -11,7 +11,7 @@ Dolemite is my name and finding out information about my production company is m
 * [Learn-more](#learn-more)
 * [License](#license)
 * [![Made for Penn LPS](https://img.shields.io/static/v1?label=Made+for&message=Penn+LPS&color=%23005bbc)](https://bootcamp.sas.upenn.edu/)
-* [![MIT](https://img.shields.io/static/v1?label=MIT&message=License&color=%23FFd600)](https://www.javascript.com)
+* [![MIT](https://img.shields.io/static/v1?label=**MIT**&message=License&color=%23FFd600)](https://www.javascript.com)
 
 ## Technologies
 
