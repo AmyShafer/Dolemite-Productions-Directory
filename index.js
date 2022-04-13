@@ -111,19 +111,17 @@ async function initDirectory() {
 
 // View Employees
 async function viewEmployees() {
-  connection.query(`
-  SELECT employees.id, employees.first_name, employees.last_name AS employee, roles.title, departments.department_name, roles.salary 
+  connection.query(`SELECT employees.id, employees.first_name, employees.last_name, roles.title, departments.department_name, roles.salary, employees.manager_id 
   FROM roles 
   LEFT JOIN employees 
-  ON employees.role_id = roles.id 
+  ON employees.role_id = roles.id
   LEFT JOIN departments 
   ON roles.department_id = departments.id
   LEFT JOIN roles
   ON employees.role_id = roles.id
-  ORDER BY employees.id;
-
-
-  `, function (err, results) {
+  LEFT JOIN employees
+  ON employees.manager_id = employee.id
+  ORDER BY employees.id;`, function (err, results) {
     if (err) {
       console.log(err);
     } else {
