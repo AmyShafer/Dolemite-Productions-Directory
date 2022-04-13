@@ -7,7 +7,7 @@ const connection = mysql.createConnection(
     user: 'root',
     // MySQL password
     password: 'feyok551',
-    database: "department_db"
+    database: 'department_db'
   });
 
 connection.connect(function (err) {

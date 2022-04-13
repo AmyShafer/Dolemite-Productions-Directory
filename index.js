@@ -166,7 +166,7 @@ async function addEmployee() {
     const manager_num = managers.find(manager => answers.manager_id === manager.key);
     connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, role_num.value, manager_num.value], function (err, results) {
       if (err) {
-        console.log("Snaps! You have reached an error!");
+        console.log(err);
       } else {
         console.log("Employee Added!");
       }
@@ -339,10 +339,10 @@ async function addDepartment() {
     {
       type: 'input',
       message: 'Do me a solid and give me the name of the new department.',
-      name: 'department_name'
+      name: 'name'
     },
   ]).then(answers => {
-    connection.query(`INSERT INTO departments (department_name) VALUES (?)`, [answers.department_name], function(err, results) {
+    connection.query(`INSERT INTO departments (name) VALUES (?)`, [answers.name], function(err, results) {
       if (err) {
         console.log("Error, Baby!");
       } else {

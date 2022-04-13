@@ -40,5 +40,4 @@ VALUES ("Malaika", "Ahraam", 1, 4),
        ("Lester", "Bihari", 4, NULL),
        ("Ted", "Brinson", 16, 6),
        ("Marie", "Carter", 1, 5),
-       ("Junior", "Cranberry", 1, 4),
-     
+       ("Junior", "Cranberry", 1, 4);
