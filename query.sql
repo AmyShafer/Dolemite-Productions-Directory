@@ -1,0 +1,1 @@
+SELECT roles, department.name FROM roles LEFT JOIN department ON roles.department_id = department.id;

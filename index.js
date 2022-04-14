@@ -239,9 +239,9 @@ async function removeEmployee() {
 }
 
 async function viewRoles() {
-  connection.query(`SELECT * FROM roles`, function (err, results) {
+  connection.query(`SELECT roles.id, roles.title, departments.name, roles.salary FROM roles LEFT JOIN departments ON roles.id = department_id;`, function (err, results) {
     if (err) {
-      console.log("Error, Baby!");
+      console.log(err);
     } else {
       console.log("The sky\'s the limit at Dolemite Productions, Baby!");
       console.table("List of Roles", results)
