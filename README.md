@@ -7,6 +7,7 @@ Dolemite is my name and finding out information about my production company is m
 * [Mockup](#mockup)
 * [Resources-used](#resources-used)
 * [Future-improvements](#future-improvements)
+* [Walk-through-video](#walk-through-video)
 * [Github-url](#github-url)
 * [Learn-more](#learn-more)
 * [License](#license)
@@ -19,7 +20,20 @@ Dolemite's Directory was created using Node.js, MySQL2, Inquirer, JavaScript, an
 
 ## Mockup
 
-![Dolemite Productions Directory](/assets/images/dpd.png)
+Get MySQL going!
+<img src="assets/dpd1.png" alt="mysql command" width="600"/>
+
+Run the schema file.
+<img src="assets/dpd2.png" alt="schema command" width="400"/>
+
+Next, run those seeds!
+<img src="assets/dpd3.png" alt="seeds command" width="400"/>
+
+Start the application: 
+<img src="assets/dpd4.png" alt="node command" width="600"/>
+
+Have fun!
+<img src="assets/dpd5.png" alt="application demo" width="600"/>
 
 ## Resources Used
 
@@ -38,7 +52,9 @@ In the future, DPD would like tackle more of the assignment bonuses such as find
 
 Also, DPD would like to it make is so the databases remain organized alphabetically, regardless of if the user adds or removes elements. 
 
----
+## Walk Through Video
+Here's a walk through video if you're interested:
+[Dolemite Productions Directory Walk Through Video](https://drive.google.com/file/d/1dWESxhC39P9IsvTxMyLO4TKXalZFmPHJ/view?usp=sharing)
 
 ## Github url
 You can find the DPD Repository here:

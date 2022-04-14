@@ -162,14 +162,13 @@ async function addEmployee() {
       choices: managerList,
     }
   ]).then(answers => {
-    console.log(answers);
     const role_num = roles.find(role => answers.role_id === role.key);
     const manager_num = managers.find(manager => answers.manager_id === manager.key);
     connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, role_num.value, manager_num.value], function (err, results) {
       if (err) {
         console.log(err);
       } else {
-        console.log(answers);
+        console.log("Employee Added!");
       }
     });
     generateDirectory();
@@ -206,7 +205,7 @@ async function managerUpdate() {
       if (err) {
         console.log("Dang! This did not go down as expected!");
       } else {
-        console.log(answers);
+        console.log("Outta Sight! That manager update happened!");
       }
     });
     generateDirectory();
@@ -283,7 +282,7 @@ async function addRole() {
     const department_num = departments.find(department => answers.department_id === department.key);
     connection.query(`INSERT INTO roles (title, salary, department_id ) VALUES (?, ?, ?)`, [answers.title, answers.salary, department_num.value], function (err, results) {
       if (err) {
-        console.log(err);
+        console.log("Error, Baby!");
       } else {
         console.log("A role was added, yes it was!");
       }
@@ -309,7 +308,7 @@ async function removeRole() {
     const role_num = roles.find(role => answers.role_id === role.key);
     connection.query(`DELETE FROM roles WHERE id = ?`, role_num.value, function(err, results) {
       if (err) {
-        console.log("Error, Baby!");
+        console.log("I ain't lyin', you got an error!");
       } else {
         console.log("Role Deleted!");
       }
@@ -345,7 +344,7 @@ async function addDepartment() {
   ]).then(answers => {
     connection.query(`INSERT INTO departments (name) VALUES (?)`, [answers.name], function(err, results) {
       if (err) {
-        console.log("Error, Baby!");
+        console.log("Somethings broke!");
       } else {
         console.log("Department Added!");
       }
@@ -370,7 +369,7 @@ async function removeDepartment () {
     const department_num = departments.find(department => answers.department_id === department.key);
     connection.query(`DELETE FROM departments WHERE id = ?`, department_num.value, function(err, results) {
       if (err) {
-        console.log("Error, Baby!");
+        console.log("That department lives on! There's an error!");
       } else {
         console.log("Damn! Department Gone!");
       }
