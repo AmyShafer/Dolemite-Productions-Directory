@@ -162,13 +162,14 @@ async function addEmployee() {
       choices: managerList,
     }
   ]).then(answers => {
+    console.log(answers);
     const role_num = roles.find(role => answers.role_id === role.key);
     const manager_num = managers.find(manager => answers.manager_id === manager.key);
     connection.query(`INSERT INTO employees (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [answers.first_name, answers.last_name, role_num.value, manager_num.value], function (err, results) {
       if (err) {
         console.log(err);
       } else {
-        console.log("Employee Added!");
+        console.log(answers);
       }
     });
     generateDirectory();
@@ -205,7 +206,7 @@ async function managerUpdate() {
       if (err) {
         console.log("Dang! This did not go down as expected!");
       } else {
-        console.log("Manager update complete!");
+        console.log(answers);
       }
     });
     generateDirectory();
@@ -239,7 +240,7 @@ async function removeEmployee() {
 }
 
 async function viewRoles() {
-  connection.query(`SELECT roles.id, roles.title, departments.name, roles.salary FROM roles LEFT JOIN departments ON roles.id = department_id;`, function (err, results) {
+  connection.query(`SELECT roles.id, roles.title, departments.name, roles.salary FROM roles LEFT JOIN departments ON roles.department_id = departments.id;`, function (err, results) {
     if (err) {
       console.log(err);
     } else {

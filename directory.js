@@ -315,12 +315,12 @@ const directory = {
     value: 5
   }, 
   {
-    key: 'Bobbie George',
-    value: 15
+    key: 'Norval Crutcher',
+    value: 10
   },
   {
-    key: 'Claudia Jackson',
-    value: 22
+    key: 'Josephine Harris',
+    value: 19
   },
   {
     key: 'Rex Lipton',
@@ -337,6 +337,10 @@ const directory = {
   {
     key: 'Curtis Pulliam',
     value: 35
+  },
+  {
+    key: 'Lady Reed',
+    value: 37
   },
   {
     key: 'Nicholas Josef von Sternberg',
